@@ -1,0 +1,1 @@
+db.forums.insert({name: "LAN RIOJA CRIANZA",year: "2006",grapes: "Tempranillo",country: "Spain",region: "Rioja",description: "A resurgence of interest in boutique vineyards...",picture: "lan_rioja.jpg"});
