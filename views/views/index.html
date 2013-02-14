@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>thinkCube forum</title>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+google.load("jquery", "1.4.2");
+function postForum(){
+if (!$("textarea#postarea").val()) {
+    // textarea is empty
+    alert("Please enter something to post !!");
+    return false;
+}
+var postcontent	= $('textarea#postarea').val();
+//TODO clean user input in order to avoid XSS attacks/validate user input
+
+//create JSON object with user name + post
+var json = {"user":"udarakr","post":postcontent};
+
+//alert("you are about to post "+JSON.stringify(json)+" content");
+$.ajax({
+url: "http://localhost:3000/forums",
+type: "POST",
+dataType: "json",
+data:json,
+success: function(){
+//empty text area after success post
+$('textarea#postarea').val('');
+  },
+error: function(){
+alert('Error occured please try again !!');
+  } 
+});
+}
+</script>
+</head>
+<body>
+	<div id="forum"></div>
+	<form action='#' method='POST'>
+		<textarea id="postarea" placeholder="Enter your post here!" cols="30" rows="5"></textarea>
+		</br>
+	</form>
+		<button onclick="postForum()">Post it!</button>
+</body>
+</html>
